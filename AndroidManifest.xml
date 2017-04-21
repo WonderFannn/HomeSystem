@@ -127,13 +127,6 @@
         <meta-data
             android:name="com.sec.android.support.multiwindow"
             android:value="true" />
-       
-
-       <activity
-            android:name="com.csipsimple.newui.EntranceActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"  >
-            
-        </activity> 
 		
 		<activity
             android:name="com.csipsimple.newui.HomeActivity"
