@@ -45,7 +45,7 @@ public class VideoCaptureDeviceInfoAndroid {
     public class AndroidVideoCaptureDevice {
         public AndroidVideoCaptureDevice() {
             frontCameraType = FrontFacingCameraType.None;
-            index = 0;
+            index = 1;
         }
 
         public String deviceUniqueName;
@@ -132,7 +132,7 @@ public class VideoCaptureDeviceInfoAndroid {
             maxFPS = 15;
         }
         //设置帧率最大值    
-        maxFPS = 15 > maxFPS ? maxFPS:15;
+//        maxFPS = 15 > maxFPS ? maxFPS:15;
         
         newDevice.captureCapabilies = new CaptureCapabilityAndroid[sizes.size()];
         newDevice.bestCapability = new CaptureCapabilityAndroid();
