@@ -47,7 +47,7 @@ public class CameraUtils8 extends CameraUtils5 {
     public void addCallbackBuffer(Camera camera, byte[] data) {
         if (ownsBuffers) {
             // Give the video buffer to the camera service again.
-            camera.addCallbackBuffer(data);
+            camera.addCallbackBuffer(null);
         }
     }
 
