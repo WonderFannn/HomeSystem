@@ -15,8 +15,6 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/bg_homeactivity_main" />
-
- 
     </LinearLayout>
 
     <LinearLayout
@@ -97,6 +95,32 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_take_call"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/bg_homeactivity_bottom"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:scaleType="center"
+                android:src="@drawable/ic_homeactivity_takecall" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="接听" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_hang_up"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="10"
@@ -116,7 +140,6 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="挂断" />
-
         </LinearLayout>
 
     </LinearLayout>

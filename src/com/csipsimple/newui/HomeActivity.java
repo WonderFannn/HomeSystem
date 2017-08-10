@@ -40,6 +40,8 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 
 	private ImageView imageViewSetting;
 	private LinearLayout btnRemoteOpenDoor;
+	private LinearLayout btnTakeCall;
+	private LinearLayout btnHangUp;
 
 	private ViewGroup mainFrame;
 
@@ -49,7 +51,6 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 	private Object callMutex = new Object();
 	private SipCallSession[] callsInfo = null;
 	
-	private WakeLock wakeLock;
 	// Screen wake lock for video
 	private WakeLock videoWakeLock;
 	
@@ -95,7 +96,11 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 		imageViewSetting.setOnClickListener(this);
 		btnRemoteOpenDoor = (LinearLayout) findViewById(R.id.btn_remote_open_door);
 		btnRemoteOpenDoor.setOnClickListener(this);
-		mainFrame = (ViewGroup) findViewById(R.id.mainFrame);
+		btnTakeCall = (LinearLayout) findViewById(R.id.btn_take_call);
+		btnTakeCall.setOnClickListener(this);
+		btnHangUp = (LinearLayout) findViewById(R.id.btn_hang_up);
+		btnHangUp.setOnClickListener(this);
+		mainFrame = (ViewGroup) findViewById(R.id.mainFram);
 		registerReceiver(callStateReceiver, new IntentFilter(SipManager.ACTION_SIP_CALL_CHANGED));
 		
 //		proximityManager = new CallProximityManager(this, this, lockOverlay);
@@ -107,8 +112,8 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 		if (cameraPreview == null) {
 			cameraPreview = ViERenderer.CreateLocalRenderer(this);
 			renderView = ViERenderer.CreateRenderer(this, true);
-//			mainFrame.addView(renderView,0,new LinearLayout.LayoutParams(100, 100));
-//			mainFrame.addView(cameraPreview, 1, 1);
+			mainFrame.addView(renderView,0,new RelativeLayout.LayoutParams(200, 200));
+			mainFrame.addView(cameraPreview,0,new RelativeLayout.LayoutParams(200, 200));
 		} else {
 		}
 	}
@@ -137,6 +142,10 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 				Toast.makeText(getApplicationContext(), "·þÎñÎ´×¢²á",
 						Toast.LENGTH_LONG).show();
 			}
+		}else if (v == btnTakeCall) {
+			onTrigger(TAKE_CALL, getActiveCallInfo());
+		}else if (v == btnHangUp) {
+			onTrigger(TERMINATE_CALL, getActiveCallInfo());
 		}
 	}
 	
@@ -252,7 +261,7 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 				
 					onTrigger(START_VIDEO, mainCallInfo);
 //					onTrigger(TAKE_CALL, mainCallInfo);
-
+					onDisplayVideo(true);
 					break;
 				case SipCallSession.InvState.CONFIRMED:
 					break;
