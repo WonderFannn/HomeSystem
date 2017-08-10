@@ -4,16 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ImageView
+    <LinearLayout
+        android:id="@+id/mainFram"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:scaleType="fitXY"
-        android:src="@drawable/bg_homeactivity_main" />
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_homeactivity_main" />
+
+ 
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#03121a" >
 
