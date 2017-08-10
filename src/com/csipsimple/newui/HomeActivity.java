@@ -134,7 +134,6 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 				Intent intent = new Intent(this, SipHome.class);
 				startActivity(intent);
 			}
-
 			if (obtainSipServiceSetupState(getApplicationContext(),
 					PreferencesProviderWrapper.HAS_ALREADY_SETUP_SERVICE)) {
 				sendMessage();
@@ -166,7 +165,6 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 					}
 				}
 			} 
-			
 		}
 	};
 
@@ -437,8 +435,8 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
                     if(videoWakeLock != null) {
                         videoWakeLock.acquire();
                     }
-                    SipService.setVideoWindow(SipCallSession.INVALID_CALL_ID, cameraPreview, true);
-                    SipService.setVideoWindow(SipCallSession.INVALID_CALL_ID, renderView, false);
+                    SipService.setVideoWindow(getActiveCallInfo().getCallId(), cameraPreview, true);
+                    SipService.setVideoWindow(getActiveCallInfo().getCallId(), renderView, false);
                 }else {
                     if(videoWakeLock != null && videoWakeLock.isHeld()) {
                         videoWakeLock.release();
