@@ -122,6 +122,10 @@ public interface IOnCallActionTrigger {
      */
     int ZRTP_REVOKE = ZRTP_TRUST + 1;
     
+    
+    
+    int SEND_MESSAGE = ZRTP_REVOKE + 1;
+    
     /**
      * Called when the user make an action
      * 

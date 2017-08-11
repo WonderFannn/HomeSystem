@@ -137,11 +137,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
+           <!--  
             <intent-filter android:priority="10" >
                 <action android:name="com.csipsimple.phone.action.INCALL" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            -->
         </activity>
         <activity
             android:name="com.csipsimple.newui.HomeSettingActivity"
@@ -459,12 +461,12 @@
             android:taskAffinity=""
             android:theme="@style/DarkTheme.NoTitle" >
 
-            <!--
+            
   			<intent-filter android:priority="10" >
                 <action android:name="com.csipsimple.phone.action.INCALL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            -->
+   
         </activity>
         <activity
             android:name="com.csipsimple.ui.PickupSipUri"

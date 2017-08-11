@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.FloatMath;
@@ -41,6 +42,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.internal.utils.UtilityWrapper;
 import com.actionbarsherlock.internal.view.menu.ActionMenuPresenter;
@@ -57,6 +59,7 @@ import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.api.SipUri;
 import com.csipsimple.api.SipUri.ParsedSipContactInfos;
+import com.csipsimple.db.DBProvider;
 import com.csipsimple.models.CallerInfo;
 import com.csipsimple.service.SipService;
 import com.csipsimple.utils.ContactsAsyncHelper;
@@ -127,6 +130,9 @@ public class InCallCard extends FrameLayout implements OnClickListener, Callback
 
         View btn;
         btn = findViewById(R.id.endButton);
+        btn.setOnClickListener(this);
+        View btnOpenDoor;
+        btn = findViewById(R.id.openDoorButton);
         btn.setOnClickListener(this);
 
         btnMenuBuilder = new MenuBuilder(getContext());
@@ -629,7 +635,9 @@ public class InCallCard extends FrameLayout implements OnClickListener, Callback
             }else if (!callInfo.isAfterEnded()) {
                 dispatchTriggerEvent(IOnCallActionTrigger.TERMINATE_CALL);
             }
-        }
+        }else if (id == R.id.openDoorButton) {
+        	dispatchTriggerEvent(IOnCallActionTrigger.SEND_MESSAGE);
+		}
     }
 
     @Override
@@ -688,5 +696,5 @@ public class InCallCard extends FrameLayout implements OnClickListener, Callback
     public void onMenuModeChange(MenuBuilder menu) {
         // Nothing to do.
     }
-
+    
 }

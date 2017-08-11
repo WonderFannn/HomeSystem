@@ -52,6 +52,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.csipsimple.R;
@@ -62,6 +63,7 @@ import com.csipsimple.api.SipCallSession.StatusCode;
 import com.csipsimple.api.SipConfigManager;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;
+import com.csipsimple.db.DBProvider;
 import com.csipsimple.service.SipService;
 import com.csipsimple.ui.PickupSipUri;
 import com.csipsimple.ui.incall.CallProximityManager.ProximityDirector;
@@ -1056,6 +1058,24 @@ public class InCallActivity extends SherlockFragmentActivity implements IOnCallA
                 case ZRTP_REVOKE : {
                     if(service != null) {
                         service.zrtpSASRevoke(call.getCallId());
+                    }
+                    break;
+                }
+                case SEND_MESSAGE : {
+                    if(service != null) {
+                    	SipProfile acc = SipProfile.getProfileFromDbId(this, 1,
+            					DBProvider.ACCOUNT_FULL_PROJECTION);
+            			if (acc != null && acc.id != SipProfile.INVALID_ID) {
+            				try {
+            					String textToSend = "opendoor";
+            					if (!TextUtils.isEmpty(textToSend)) {
+            						service.sendMessage(textToSend, "001", (int) acc.id);
+            						Toast.makeText(getApplicationContext(), "³É¹¦¿ªËø",
+            								Toast.LENGTH_SHORT).show();
+            					}
+            				} catch (RemoteException e) {
+            				}
+            			}
                     }
                     break;
                 }

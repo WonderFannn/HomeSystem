@@ -112,8 +112,8 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 		if (cameraPreview == null) {
 			cameraPreview = ViERenderer.CreateLocalRenderer(this);
 			renderView = ViERenderer.CreateRenderer(this, true);
-			mainFrame.addView(renderView,0,new RelativeLayout.LayoutParams(200, 200));
-			mainFrame.addView(cameraPreview,0,new RelativeLayout.LayoutParams(200, 200));
+			mainFrame.addView(renderView,0,new RelativeLayout.LayoutParams(1, 1));
+			mainFrame.addView(cameraPreview,0,new RelativeLayout.LayoutParams(1, 1));
 		} else {
 		}
 	}
@@ -257,15 +257,15 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 					break;
 				case SipCallSession.InvState.CONNECTING:
 				
-					onTrigger(START_VIDEO, mainCallInfo);
+					onTrigger(START_VIDEO, getActiveCallInfo());
 //					onTrigger(TAKE_CALL, mainCallInfo);
-					onDisplayVideo(true);
+					
 					break;
 				case SipCallSession.InvState.CONFIRMED:
 					break;
 				case SipCallSession.InvState.NULL:
 				case SipCallSession.InvState.DISCONNECTED:
-					finish();
+//					finish();
 				
 					// This will release locks
 					// onDisplayVideo(false);
@@ -273,8 +273,6 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 					return;
 
 				}
-
-			
 			}
 
 		}
@@ -392,6 +390,7 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
 							whichAction == START_VIDEO);
 					service.updateCallOptions(call.getCallId(), opts);
 				}
+				onDisplayVideo(true);
 				break;
 			}
 			case ZRTP_TRUST: {
@@ -435,7 +434,7 @@ public class HomeActivity extends Activity implements OnClickListener,IOnCallAct
                     if(videoWakeLock != null) {
                         videoWakeLock.acquire();
                     }
-                    SipService.setVideoWindow(getActiveCallInfo().getCallId(), cameraPreview, true);
+                    SipService.setVideoWindow(SipCallSession.INVALID_CALL_ID, cameraPreview, true);
                     SipService.setVideoWindow(getActiveCallInfo().getCallId(), renderView, false);
                 }else {
                     if(videoWakeLock != null && videoWakeLock.isHeld()) {

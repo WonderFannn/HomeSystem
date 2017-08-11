@@ -124,14 +124,25 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="2dip"
-        android:background="@drawable/end_call_background"
         android:orientation="horizontal" >
 
         <ImageButton
+            android:id="@+id/openDoorButton"
+            style="?attr/actionButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/done"
+            android:minHeight="64dip"
+            android:background="@drawable/bg_homeactivity_bottom"
+            android:src="@drawable/ic_homeactivity_open" />
+        <ImageButton
+        android:background="@drawable/end_call_background"
             android:id="@+id/endButton"
             style="?attr/actionButtonStyle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:contentDescription="@string/done"
             android:minHeight="64dip"
             android:src="@drawable/ic_end_call" />
